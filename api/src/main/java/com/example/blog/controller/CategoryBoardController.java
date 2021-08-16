@@ -2,6 +2,7 @@ package com.example.blog.controller;
 
 import com.example.blog.dto.CategoryBoardDTO;
 import com.example.blog.service.CategoryBoardService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,11 @@ public class CategoryBoardController {
     private CategoryBoardService categoryBoardService;
 
     @GetMapping("/category/{category}")
-    public List<CategoryBoardDTO> categoryBoardList(@PathVariable String category) {
-        System.out.println(categoryBoardService.categoryBoardList(category));
-        return categoryBoardService.categoryBoardList(category);
+    public PageInfo<CategoryBoardDTO> categoryBoardList(@RequestParam (value = "p_num", required = false) int page,
+                                                        @PathVariable String category) {
+        List<CategoryBoardDTO> result = categoryBoardService.categoryBoardList(category, page, 5);
+        PageInfo<CategoryBoardDTO> pi = new PageInfo<CategoryBoardDTO>(result);
+        return pi;
     }
 
 
