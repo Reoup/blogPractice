@@ -8,4 +8,7 @@ import java.util.List;
 @Mapper
 public interface CategoryBoardMapper {
     List<CategoryBoardDTO> categoryBoardList(String category);
+    CategoryBoardDTO getPersonBlogBoard(String name, int idx);
+    void updateHitCnt(int idx);
+
 }

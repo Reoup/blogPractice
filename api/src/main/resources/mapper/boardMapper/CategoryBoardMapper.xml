@@ -10,4 +10,22 @@
         ORDER BY idx desc
     </select>
 
+    <select id="getPersonBlogBoard" resultType="com.example.blog.dto.CategoryBoardDTO">
+        SELECT *
+        FROM board
+        WHERE idx = #{idx}
+    </select>
+
+    <update id="updateHitCnt" parameterType="com.example.blog.dto.CategoryBoardDTO">
+        UPDATE board
+        SET hit = IFNULL(hit, 0) + 1
+        WHERE idx = ${idx}
+    </update>
+
+    <select id="getPersonBlogCategory" resultType="com.example.blog.dto.CategoryBoardDTO">
+        SELECT category, count(category)
+        FROM board
+        WHERE name = #{name}
+    </select>
+
 </mapper>
