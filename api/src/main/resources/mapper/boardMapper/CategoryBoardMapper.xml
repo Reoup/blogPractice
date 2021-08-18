@@ -22,10 +22,11 @@
         WHERE idx = ${idx}
     </update>
 
-    <select id="getPersonBlogCategory" resultType="com.example.blog.dto.CategoryBoardDTO">
-        SELECT category, count(category)
+    <select id="getPersonBlogCategory" resultType="com.example.blog.dto.PersonBlogCategoryDTO">
+        SELECT category, name, count(*)
         FROM board
         WHERE name = #{name}
+        group by category
     </select>
 
 </mapper>
